@@ -8,6 +8,8 @@ namespace OwenGibson
 {
     public class Deck : MonoBehaviour
     {
+        [SerializeField] private Card cardPrefab;
+
         [SerializeField] private List<Card> deck;
         private string[] values = new string[13] { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
 
@@ -17,9 +19,12 @@ namespace OwenGibson
             {
                 foreach (string value in values)
                 {
-                    Card _newCard = new Card();
+                    Card _newCard = Instantiate(cardPrefab, transform);
+
                     _newCard.value = value;
                     _newCard.suit = suit.ToString();
+                    _newCard.name = value + " of " + suit;
+
                     deck.Add(_newCard);
                 }
             }
